@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/', methods = ['POST', 'GET'])
 def data(d):
     while True:
-        charlist = {'Mario': 1, 'Luigi': 2, 'Donkey Kong': 3, 'Yoshi': 4, 'Link': 5, 'Kirby': 6, 'Fox': 7, 'Pikachu': 8, 'Jigglypuff': 9, 'Samus': 10, 'Captain Falcon': 11, 'Ness': 12}
+        charlist = {'Mario': 1, 'Luigi': 2, 'Bowser': 3}
         for i in range(len(charlist)):
             charlist[i] = charlist[i].lower()
         if request.method == 'GET':
