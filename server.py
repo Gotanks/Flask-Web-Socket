@@ -1,19 +1,17 @@
 #Make a simple server application using Python. Use the socket library or flask. All the server has is a dictionary which contains a toy and the quantity of that toy. The client should be able to use a GET request to the server to see how many characters it has.
 from flask import Flask
-from flask import Sock
-
 app = Flask(__name__)
-sock = Sock(app)
-
 #sample server client name 
-@sock.route('/Characters')
-def data(d):
+@app.route('/')
+def data():
     while True:
-        charlist = ["Mario", "Luigi", "Donkey Kong", "Yoshi" "Link", "Kirby", "Fox", "Pikachu", "Jigglypuff", "Samus", "Captain Falcon", "Ness"]
+        charlist = {'Mario': 1, 'Luigi': 2, 'Donkey Kong': 3, 'Yoshi': 4, 'Link': 5, 'Kirby': 6, 'Fox': 7, 'Pikachu': 8, 'Jigglypuff': 9, 'Samus': 10, 'Captain Falcon': 11, 'Ness': 12}
         for i in range(len(charlist)):
             charlist[i] = charlist[i].lower()
         input = d.receive()
         input = input.lower()
-        # loops through the character list for the name of character
-        match = [name for name in charlist if(name in input)]
-        match = [match.title() for match in match]
+        if input in charlist:
+            input.title()
+        print(input + "is in the list")
+if __name__ == '__main__':
+    app.run(debug = True, host='0.0.0.0')
