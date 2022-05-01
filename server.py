@@ -17,4 +17,4 @@ def data(d):
         # loops through the character list for the name of character
         match = [name for name in Charlist if(name in input)]
         match = [match.title() for match in match]
-    
+   
