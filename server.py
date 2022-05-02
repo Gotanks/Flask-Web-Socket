@@ -8,7 +8,7 @@ charlist = {
     "Falco": 3
 }
 
-charlist = dict((k.lower(), v) for k, v in charlist.items())
+# charlist = dict((k.lower(), v) for k, v in charlist.items())
 #sample server client name 
 @app.route('/data', methods = ['POST', 'GET'])
 def data():
