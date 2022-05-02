@@ -2,7 +2,6 @@
 #Make get request for client to query through ex: if user types in value in the url, the server returns key
 from flask import *
 app = Flask(__name__)
-# charlist = {'Ganondorf': 1, 'Falco': 2, 'Bowser': 3}
 charlist = {
     "Bowser": 1,
     "Ganondorf": 2,
@@ -17,14 +16,15 @@ def data():
     charname = args.get('name')
     charnumber = args.get('number')
     # if request.method == 'POST':
+    # result = charlist
     if None not in (charname, charnumber):
-        result = {k: v for k, v in args.items() if k == charname and v == charnumber}
+        result = {k: v for k, v in charlist.items() if k == charname and v == charnumber}
             # return result
     elif charname is not None:
-        result = {k: v for k, v in args.items() if k == charname}
+        result = {k: v for k, v in charlist.items() if k == charname}
         # return result.keys
     elif charnumber is not None:
-        result = {k: v for k, v in args.items() if v == charnumber}
+        result = {k: v for k, v in charlist.items() if v == charnumber}
     return result
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
