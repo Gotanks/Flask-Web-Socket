@@ -2,10 +2,10 @@
 from flask import *
 app = Flask(__name__)
 charlist = {'Ganondorf': 1, 'Falco': 2, 'Bowser': 3}
-for i in range(len(charlist)):
-    charlist[i] = charlist[i].lower()
+# for i in range(len(charlist)):
+#     charlist[i] = charlist[i].lower()
 #sample server client name 
-@app.route('/', methods = ['POST', 'GET'])
+@app.route('/data', methods = ['POST', 'GET'])
 def data():
     while True:
         args = request.args
@@ -18,6 +18,6 @@ def data():
             # input = input.lower()
             if charlist in charlist(charname, charnumber):
                 result = {key: value for key, value in charlist.items}
-        print(result + "is in the list")
+        return result
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
