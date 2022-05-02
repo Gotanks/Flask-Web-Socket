@@ -12,12 +12,13 @@ def data():
         charname = args.get('name')
         charnumber = args.get('number')
         if request.method == 'GET':
-            return print("These are the characters"), charlist
-        if request.method == 'POST':
+            return 'You reached the GET spot'
+        elif request.method == 'POST':
             # input = d.receive()
             # input = input.lower()
             if charlist in charlist(charname, charnumber):
                 result = {key: value for key, value in charlist.items}
-        return result
+                return 'You reached the POST spot'
+        return result.values
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
