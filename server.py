@@ -13,19 +13,18 @@ charlist = dict((k.lower(), v) for k, v in charlist.items())
 #sample server client name 
 @app.route('/data', methods = ['POST', 'GET'])
 def data():
-    while True:
-        args = request.args
-        charname = args.get('name')
-        charnumber = args.get('number')
-        if request.method == 'POST':
-            if None not in (charname, charnumber):
-                result = {k: v for k, v in args.items() if k == charname and v == charnumber}
-                return result
-            elif charname is not None:
-                result = {k: v for k, v in args.items() if k == charname}
-                return result.keys
-        else:
-            return charlist
-        return "Something goes here"
+    args = request.args
+    charname = args.get('name')
+    charnumber = args.get('number')
+    # if request.method == 'POST':
+    if None not in (charname, charnumber):
+        result = {k: v for k, v in args.items() if k == charname and v == charnumber}
+            # return result
+    elif charname is not None:
+        result = {k: v for k, v in args.items() if k == charname}
+        # return result.keys
+    elif charnumber is not None:
+        result = {k: v for k, v in args.items() if v == charnumber}
+    return result
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
