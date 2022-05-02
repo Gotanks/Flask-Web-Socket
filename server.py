@@ -1,4 +1,5 @@
 #Make a simple server application using Python. Use the socket library or flask. All the server has is a dictionary which contains a toy and the quantity of that toy. The client should be able to use a GET request to the server to see how many characters it has.
+#Make get request for client to query through ex: if user types in value in the url, the server returns key
 from flask import *
 app = Flask(__name__)
 # charlist = {'Ganondorf': 1, 'Falco': 2, 'Bowser': 3}
@@ -17,11 +18,12 @@ def data():
         charname = args.get('name')
         charnumber = args.get('number')
         if request.method == 'POST':
-            if any([True for k, v in args.items() if v == charname]):
-                result = {k: v for k, v in args.items}
+            if None not in (charname, charnumber):
+                result = {k: v for k, v in args.items() if k == charname and v == charnumber}
                 return result
-            else:
-                return "Not in list"
+            elif charname is not None:
+                result = {k: v for k, v in args.items() if k == charname}
+                return result.keys
         else:
             return charlist
         return "Something goes here"
