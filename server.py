@@ -17,10 +17,13 @@ def data():
         charname = args.get('name')
         charnumber = args.get('number')
         if request.method == 'POST':
-            if charname in charlist(charname, charnumber):
-                result = {key: value for key, value in charlist.items}
-        elif request.method == 'GET':
+            if any([True for k, v in args.items() if v == charname]):
+                result = {k: v for k, v in args.items}
+                return result
+            else:
+                return "Not in list"
+        else:
             return charlist
-        return result.values
+        return "Something goes here"
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
