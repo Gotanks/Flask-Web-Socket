@@ -35,7 +35,7 @@ def data():
 
 
 @app.route('/champions/<character>', methods = ['GET'])
-def data(character):
+def character_select(character):
     return "Client typed in " + character
 
 
