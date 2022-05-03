@@ -15,14 +15,14 @@ charlist = {
 
 # charlist = dict((k.lower(), v) for k, v in charlist.items())
 #sample server client name 
-@app.route('/data', methods = ['GET', 'POST'])
+@app.route('/', methods = ['GET', 'POST'])
 def data():
     args = request.args
-    charname = args.get('name')
-    chargame = args.get('game')
+    charname = request.args.get('character')
+    chargame = request.args.get('series')
     result = charlist
-    # if request.method == 'POST':
-    #     return result
+    if request.method == 'POST':
+        return result
     if None not in (charname, chargame):
         result = {k: v for k, v in charlist.items() if k == charname and v == chargame}
             # return result
@@ -33,10 +33,12 @@ def data():
         result = {k: v for k, v in charlist.items() if v == chargame}
     return result
 
-
+#Current bug here is if you mix the parameters around then the returned key and value are mixed
 @app.route('/select/<character>/<series>', methods = ['GET'])
-def character_select(character, series):
-    return "Character: " + character +" First intraduced in: " + series
+def character_select(series, character):
+    return "First introduced in: " + series
+def character_series(character, series):
+    return "Character: " + character 
 
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
