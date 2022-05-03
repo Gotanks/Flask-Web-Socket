@@ -3,9 +3,14 @@
 from flask import *
 app = Flask(__name__)
 charlist = {
-    "Bowser": 1,
-    "Ganondorf": 2,
-    "Falco": 3
+    "Bowser": "Melee",
+    "Ganondorf": "Melee",
+    "Falco": "Melee",
+    "Lucario": "Brawl",
+    "Ike": "Brawl",
+    "Cloud": "Sm4sh",
+    "Ridley": "Ultimate",
+    "Kazuya": "Ultimate"
 }
 
 # charlist = dict((k.lower(), v) for k, v in charlist.items())
@@ -13,20 +18,20 @@ charlist = {
 @app.route('/data', methods = ['POST', 'GET'])
 def data():
     args = request.args
-    charname = args.get('name')
-    charnumber = args.get('number')
+    charname = args.get('name', type = str)
+    chargame = args.get('game', type = str)
     if request.method == 'POST':
         result = charlist
         return result
     elif request.method == 'GET':
-        if None not in (charname, charnumber):
-            result = {k: v for k, v in charlist.items() if k == charname and v == charnumber}
+        if None not in (charname, chargame):
+            result = {k: v for k, v in charlist.items() if k == charname and v == chargame}
                 # return result
         elif charname is not None:
             result = {k: v for k, v in charlist.items() if k == charname}
             # return result.keys
-        elif charnumber is not None:
-            result = {k: v for k, v in charlist.items() if v == charnumber}
+        elif chargame is not None:
+            result = {k: v for k, v in charlist.items() if v == chargame}
         return result
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
