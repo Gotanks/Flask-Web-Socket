@@ -21,17 +21,16 @@ def data():
     charname = args.get('name')
     chargame = args.get('game')
     result = charlist
-    if request.method == 'POST':
-        return result
-    else:
-        if None not in (charname, chargame):
-            result = {k: v for k, v in charlist.items() if k == charname and v == chargame}
-                # return result
-        elif charname is not None:
-            result = {k: v for k, v in charlist.items() if k == charname}
-            # return result.keys
-        elif chargame is not None:
-            result = {k: v for k, v in charlist.items() if v == chargame}
+    # if request.method == 'POST':
+    #     return result
+    if None not in (charname, chargame):
+        result = {k: v for k, v in charlist.items() if k == charname and v == chargame}
+            # return result
+    elif charname is not None:
+        result = {k: v for k, v in charlist.items() if k == charname}
+         # return result.keys
+    elif chargame is not None:
+        result = {k: v for k, v in charlist.items() if v == chargame}
     return result
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
