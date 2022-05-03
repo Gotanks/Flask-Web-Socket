@@ -32,5 +32,12 @@ def data():
     elif chargame is not None:
         result = {k: v for k, v in charlist.items() if v == chargame}
     return result
+
+
+@app.route('/champions/<character>', methods = ['GET'])
+def data(character):
+    return "Client typed in " + character
+
+
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
