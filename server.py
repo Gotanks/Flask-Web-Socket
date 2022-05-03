@@ -15,7 +15,7 @@ charlist = {
 
 # charlist = dict((k.lower(), v) for k, v in charlist.items())
 #sample server client name 
-@app.route('/data', methods = ['POST', 'GET'])
+@app.route('/data', methods = ['GET'])
 def data():
     args = request.args
     charname = args.get('name')
