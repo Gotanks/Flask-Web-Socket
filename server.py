@@ -15,7 +15,7 @@ charlist = {
 
 # charlist = dict((k.lower(), v) for k, v in charlist.items())
 #sample server client name 
-@app.route('/data', methods = ['GET'])
+@app.route('/data', methods = ['GET', 'POST'])
 def data():
     args = request.args
     charname = args.get('name')
@@ -34,10 +34,9 @@ def data():
     return result
 
 
-@app.route('/champions/<character>', methods = ['GET'])
-def character_select(character):
-    return "Client typed in " + character
-
+@app.route('/select/<character>/<series>', methods = ['GET'])
+def character_select(character, series):
+    return "Character: " + character +" First intraduced in: " + series
 
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
