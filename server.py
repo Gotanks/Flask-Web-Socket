@@ -18,12 +18,12 @@ charlist = {
 @app.route('/data', methods = ['POST', 'GET'])
 def data():
     args = request.args
-    charname = args.get('name', type = str)
-    chargame = args.get('game', type = str)
+    charname = args.get('name')
+    chargame = args.get('game')
+    result = charlist
     if request.method == 'POST':
-        result = charlist
         return result
-    elif request.method == 'GET':
+    else:
         if None not in (charname, chargame):
             result = {k: v for k, v in charlist.items() if k == charname and v == chargame}
                 # return result
@@ -32,6 +32,6 @@ def data():
             # return result.keys
         elif chargame is not None:
             result = {k: v for k, v in charlist.items() if v == chargame}
-        return result
+    return result
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
