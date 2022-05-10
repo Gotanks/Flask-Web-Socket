@@ -1,6 +1,6 @@
 #Make a simple server application using Python. Use the socket library or flask. All the server has is a dictionary which contains a toy and the quantity of that toy. The client should be able to use a GET request to the server to see how many characters it has.
 #Make get request for client to query through ex: if user types in value in the url, the server returns key
-# Read up on JSON for more information on how the JSON ONLY TWO LINES NEED TO BE MODIFIED
+# Read up on JSON for more information on how the JSON, ONLY TWO LINES NEED TO BE MODIFIED
 from flask import *
 app = Flask(__name__)
 charlist = {
@@ -16,9 +16,12 @@ charlist = {
 #TODO return a json of characters when returning name and quantity as the fields, if the key does not exist, then return saying item doesn't exist
 @app.route('/character/<char>', methods = ['GET'])
 def checkseries(char):
-    for key, value in charlist.items():
+    json_charlist = json.dumps(charlist, indent = 2)
+    # for key, value in charlist.items():
+    for key in json_charlist:
         if key.lower() == char.lower():
-            return "Quantity left is: " + str(value)
+            # return "Quantity left is: " + str(value)
+            return "Quantity left is: " + json_charlist[key]
     return "CHARACTER NOT FOUND"
 
 if __name__ == '__main__':
