@@ -16,12 +16,13 @@ charlist = {
 #TODO return a json of characters when returning name and quantity as the fields, if the key does not exist, then return saying item doesn't exist
 @app.route('/character/<char>', methods = ['GET'])
 def checkseries(char):
-    json_charlist = json.dumps(charlist, indent = 2)
-    # for key, value in charlist.items():
-    for key in json_charlist:
+    # json_charlist = json.dumps(charlist, indent = 2)
+    for key, value in charlist.items():
+    # for key in json_charlist:
         if key.lower() == char.lower():
-            # return "Quantity left is: " + str(value)
-            return "Quantity left is: " + json_charlist[key]
+            json_object = json.dumps(str(value))
+            return "Quantity left is: " + json_object
+            # return "Quantity left is: " + json_charlist[key]
     return "CHARACTER NOT FOUND"
 
 if __name__ == '__main__':
