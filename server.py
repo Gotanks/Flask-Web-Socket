@@ -31,7 +31,8 @@ def checkseries(char):
 def makeorder():
     user_order = request.form.get("character")#ordering character for example: Kazuya
     order_quantity = request.form.get("quantity")#ordering 5 this line
-    if user_order.lower == charlist[user_order.lower] and charlist[user_order] - int(order_quantity) > 0:
+    # if user_order.lower == charlist[user_order.lower()] and if charlist[user_order] - int(order_quantity) > 0: FIX FIRST PART OF IF STATEMENT
+    if charlist[user_order] - int(order_quantity) > 0:
         final_order = charlist[user_order] - int(order_quantity)
         charlist[user_order] = final_order
     else:
