@@ -25,16 +25,16 @@ def checkseries(char):
     return json.dumps({
         "error" : "character not found"
     })
-    #TODO Implement lower case and cannot order more than the quantity
 @app.route('/order', methods = ['POST'])
 def makeorder():
-    user_order = request.form.get("character")#ordering character for example: Kazuya
-    order_quantity = request.form.get("quantity")#ordering 5 this line
-    for key, value in charlist.items():# if user_order.lower == charlist[user_order.lower()] and if charlist[user_order] - int(order_quantity) > 0: FIX FIRST PART OF IF STATEMENT
+    user_order = request.form.get("character")
+    order_quantity = request.form.get("quantity")
+    for key, value in charlist.items():
         if charlist[user_order] - int(order_quantity) > 0 and user_order.lower() == key.lower():
             final_order = charlist[user_order] - int(order_quantity)
             charlist[user_order] = final_order
-        else:
+            # return str(final_order)
+        elif charlist[user_order] - int(order_quantity) < 0 and user_order.lower() != key.lower():
             return "Order cannot be made"
     return str(final_order)
 if __name__ == '__main__':
