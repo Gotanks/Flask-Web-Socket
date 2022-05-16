@@ -33,9 +33,10 @@ def makeorder():
         if charlist[user_order] - int(order_quantity) > 0 and user_order.lower() == key.lower():
             final_order = charlist[user_order] - int(order_quantity)
             charlist[user_order] = final_order
-            # return str(final_order)
-        elif charlist[user_order] - int(order_quantity) < 0 and user_order.lower() != key.lower():
+            return str(final_order)
+        else:
+        # elif charlist[user_order] - int(order_quantity) < 0 and user_order.lower() != key.lower():
             return "Order cannot be made"
-    return str(final_order)
+    return "How did you get here?"
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
