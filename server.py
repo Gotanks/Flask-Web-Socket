@@ -29,14 +29,21 @@ def checkseries(char):
 def makeorder():
     user_order = request.form.get("character")
     order_quantity = request.form.get("quantity")
-    for key, value in charlist.items():
+    for key, values in charlist.items():
+        if(user_order.lower() == key.lower()):
+            print(key + " " + key.lower())
+            print(user_order + " " + key)
+            print(user_order.lower() + " " + key)
+            print(user_order.lower() + " " + key.lower())
+            print(user_order + " " + user_order.lower())
         if charlist[user_order] - int(order_quantity) > 0 and user_order.lower() == key.lower():
             final_order = charlist[user_order] - int(order_quantity)
             charlist[user_order] = final_order
-            return str(final_order)
+            break
         else:
         # elif charlist[user_order] - int(order_quantity) < 0 and user_order.lower() != key.lower():
             return "Order cannot be made"
-    return "How did you get here?"
+    return str(final_order)
+    #  return "How did you get here?"
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
