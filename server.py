@@ -36,8 +36,8 @@ def makeorder():
                 charlist[key] = final_order
                 break
         # else:
-        elif charlist[key] - int(order_quantity) < 0:
-            if user_order.lower() != key.lower():
+        elif user_order.lower() != key.lower():
+            if charlist[key] - int(order_quantity) < 0:
                 return "Order cannot be made"
     return "Thank you for ordering " + user_order.title() + ". There's now only " + str(final_order) + " Stock remaining!"
     #  return "How did you get here?"
