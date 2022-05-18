@@ -31,13 +31,14 @@ def makeorder():
     order_quantity = request.form.get("quantity")
     for key, values in charlist.items():
         if  user_order.lower() == key.lower():
-            if charlist[user_order] - int(order_quantity) > 0:
-                final_order = charlist[user_order] - int(order_quantity)
-                charlist[user_order] = final_order
+            if charlist[key] - int(order_quantity) > 0:
+                final_order = charlist[key] - int(order_quantity)
+                charlist[key] = final_order
                 break
-        else:
-        # elif charlist[user_order] - int(order_quantity) < 0 and user_order.lower() != key.lower():
-            return "Order cannot be made"
+        # else:
+        elif charlist[key] - int(order_quantity) < 0:
+            if user_order.lower() != key.lower():
+                return "Order cannot be made"
     return str(final_order)
     #  return "How did you get here?"
 if __name__ == '__main__':
