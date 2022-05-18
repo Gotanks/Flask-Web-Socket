@@ -8,8 +8,8 @@ charlist = {
     "Ganondorf": 3,
     "Falco": 10,
     "Lucario": 3,
-    "Ike": 0,
-    "Cloud": 1,
+    "Ike": 2,
+    "Cloud": 2,
     "Ridley": 5,
     "Kazuya": 2
 }
@@ -31,12 +31,12 @@ def makeorder():
     order_quantity = request.form.get("quantity")
     for key, values in charlist.items():
         if  user_order.lower() == key.lower():
-            if charlist[key] - int(order_quantity) > 0:
+            if charlist[key] - int(order_quantity) >= 0:
                 final_order = charlist[key] - int(order_quantity)
                 charlist[key] = final_order
                 break
         # else:
-        elif charlist[key] - int(order_quantity) < 0:
+        elif charlist[key] - int(order_quantity) <= 0:
             if user_order.lower() != key.lower():
                 return "Order cannot be made"
     return str(final_order)
