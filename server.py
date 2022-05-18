@@ -8,8 +8,8 @@ charlist = {
     "Ganondorf": 3,
     "Falco": 10,
     "Lucario": 3,
-    "Ike": 2,
-    "Cloud": 2,
+    "Ike": 1,
+    "Cloud": 1,
     "Ridley": 5,
     "Kazuya": 2
 }
@@ -36,10 +36,10 @@ def makeorder():
                 charlist[key] = final_order
                 break
         # else:
-        elif charlist[key] - int(order_quantity) <= 0:
+        elif charlist[key] - int(order_quantity) < 0:
             if user_order.lower() != key.lower():
                 return "Order cannot be made"
-    return str(final_order)
+    return "Thank you for ordering " + user_order.title() + ". There's now only " + str(final_order) + " Stock remaining!"
     #  return "How did you get here?"
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
