@@ -1,6 +1,7 @@
 # DONE Make a simple server application using Python. Use the socket library or flask. All the server has is a dictionary which contains a toy and the quantity of that toy. The client should be able to use a GET request to the server to see how many characters it has.
 # DONE Make get request for client to query through ex: if user types in value in the url, the server returns key
 # DONE Read up on JSON for more information on how the JSON, ONLY TWO LINES NEED TO BE MODIFIED
+from ast import Or
 from flask import *
 app = Flask(__name__)
 charlist = {
@@ -35,10 +36,8 @@ def makeorder():
                 final_order = charlist[key] - int(order_quantity)
                 charlist[key] = final_order
                 break
-        # else:
-        elif user_order.lower() != key.lower():
-            if charlist[key] - int(order_quantity) < 0:
-                return "Order cannot be made"
+            elif charlist[key] - int(order_quantity) < 0:
+                return "Order cannot be made, not enough "
     return "Thank you for ordering " + user_order.title() + ". There's now only " + str(final_order) + " Stock remaining!"
     #  return "How did you get here?"
 if __name__ == '__main__':
